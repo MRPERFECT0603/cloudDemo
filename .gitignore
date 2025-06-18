@@ -1,0 +1,14 @@
+# Ignore node_modules in all subfolders
+**/node_modules/
+
+# Ignore .env files in all subfolders
+**/.env
+
+# Optional: Mac system files
+.DS_Store
+
+# Optional: log files
+*.log
+
+# Optional: coverage/test reports
+coverage/
