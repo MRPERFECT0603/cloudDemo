@@ -4,11 +4,12 @@ import {
   getBook,
   deleteBook,
 } from './Controller.js';
+import { authenticate } from './authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/', createBook);      
-router.get('/:id', getBook);        
-router.delete('/:id', deleteBook);  
+router.post('/', authenticate, createBook);      
+router.get('/:id', authenticate, getBook);        
+router.delete('/:id', authenticate, deleteBook);  
 
 export default router;

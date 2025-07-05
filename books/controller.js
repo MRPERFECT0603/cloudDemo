@@ -30,6 +30,10 @@ export const getBook = async (req, res) => {
 };
 
 export const deleteBook = async (req, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: 'Forbidden: Admins only can delete books' });
+  }
+
   const { id } = req.params;
 
   try {

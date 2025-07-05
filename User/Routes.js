@@ -4,11 +4,13 @@ import {
   getUser,
   deleteUser,
 } from './Controller.js';
+import { authenticate } from './authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/', createUser);       
-router.get('/:id', getUser);       
-router.delete('/:id', deleteUser);  
+// Add auth for all routes
+router.post('/', authenticate, createUser);      
+router.get('/:id', authenticate, getUser);       
+router.delete('/:id', authenticate, deleteUser); 
 
 export default router;

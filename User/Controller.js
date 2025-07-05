@@ -1,4 +1,8 @@
 export const createUser = async (req, res) => {
+  if (req.user?.role !== 'admin') {
+    return res.status(403).json({ message: 'Forbidden: Admins only can create users' });
+  }
+
   const { name, email } = req.body;
 
   try {
@@ -13,6 +17,7 @@ export const createUser = async (req, res) => {
     res.status(500).json({ message: 'Server error while creating user' });
   }
 };
+
 
 export const getUser = async (req, res) => {
   const { id } = req.params;
@@ -30,6 +35,10 @@ export const getUser = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
+  if (req.user?.role !== 'admin') {
+    return res.status(403).json({ message: 'Forbidden: Admins only can delete users' });
+  }
+
   const { id } = req.params;
 
   try {
